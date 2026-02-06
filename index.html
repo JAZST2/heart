@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Special Awaits... 💝</title>
+
+    <!-- Open Graph tags for sharing -->
+    <meta property="og:title" content="A Special Valentine's Invitation">
+    <meta property="og:description" content="Something magical awaits you...">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Screen 1: Welcome/Teaser -->
+    <div id="screen1" class="screen active">
+        <div class="content">
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" alt="Cute couple animation" class="main-gif">
+            </div>
+            <h1 class="teaser-text">Something special awaits you... 💝</h1>
+            <div class="button-container">
+                <button id="enterBtn" class="enter-btn">Enter if you're interested 👀</button>
+                <button id="exitBtn" class="exit-btn">Maybe later...</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Fake Loading Screen -->
+    <div id="screen2" class="screen">
+        <div class="content">
+            <div class="loading-container">
+                <h2 id="loadingText">Calculating our compatibility... 99.9% ✓</h2>
+                <div class="progress-bar-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <p id="progressPercent">0%</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: The Baguio Proposal -->
+    <div id="screen3" class="screen">
+        <div class="content scroll-content">
+            <h1 class="section-header">Here's the plan... 🗺️</h1>
+            <p class="opening-text">
+                I've been thinking... How about we escape to Baguio this Valentine's?
+                Just you, me, and the cool mountain breeze. ⛰️💨
+            </p>
+
+            <div class="baguio-showcase">
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800" alt="Coffee shop" class="showcase-img">
+                    <h3>Morning Coffee at Good Taste</h3>
+                    <p>Start our day with hot pandesal and coffee ☕</p>
+                </div>
+
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800" alt="Park with lake" class="showcase-img">
+                    <h3>Stroll Through Burnham Park</h3>
+                    <p>Take a boat ride and just talk for hours 🚣</p>
+                </div>
+
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800" alt="Strawberry fields" class="showcase-img">
+                    <h3>Strawberry Farm Adventure</h3>
+                    <p>Pick fresh strawberries together 🍓</p>
+                </div>
+
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800" alt="Night market" class="showcase-img">
+                    <h3>Session Road Walks</h3>
+                    <p>Hold hands while we explore the night market 🌙</p>
+                </div>
+
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Mountain sunset" class="showcase-img">
+                    <h3>Sunset at Mines View</h3>
+                    <p>Watch the sunset paint the sky together 🌅</p>
+                </div>
+
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1516131206008-dd041a9764fd?w=800" alt="Cozy room" class="showcase-img">
+                    <h3>Cozy Ending</h3>
+                    <p>End the day wrapped in blankets, just us 🤗</p>
+                </div>
+            </div>
+
+            <p class="narrative-text">
+                I know it's simple. No grand gestures, no fancy plans. Just us, discovering a beautiful
+                place together, making memories that'll last longer than any gift ever could. So what do
+                you say?
+            </p>
+
+            <button id="nextBtn" class="next-btn">Sounds perfect! What's next? →</button>
+        </div>
+    </div>
+
+    <!-- Screen 4: The Big Question -->
+    <div id="screen4" class="screen">
+        <div class="content">
+            <div class="question-container">
+                <img src="https://media.giphy.com/media/3oEjI1erPMTMBFmNHi/giphy.gif" alt="Nervous puppy" class="question-gif">
+                <h1 class="big-question">Will you be my Valentine? 💕</h1>
+                <div class="answer-buttons">
+                    <button id="yesBtn" class="yes-btn">YES! 💖</button>
+                    <button id="noBtn" class="no-btn">
+                        <span class="jeepney">🚐</span>
+                        <span class="no-text">NO</span>
+                    </button>
+                </div>
+                <p id="noMessage" class="no-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Celebration -->
+    <div id="screen5" class="screen">
+        <div class="content">
+            <div class="celebration-container">
+                <h1 class="celebration-title">Best decision ever! 🎉</h1>
+                <p class="celebration-message">
+                    Can't wait to make this Valentine's unforgettable with you 💕
+                </p>
+
+                <div class="details-card">
+                    <h2>Trip Details:</h2>
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span class="detail-label">Date:</span>
+                        <span class="detail-value">February 14, 2025</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span class="detail-label">Destination:</span>
+                        <span class="detail-value">Baguio City</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🎒</span>
+                        <span class="detail-label">Pack:</span>
+                        <span class="detail-value">Warm clothes, your smile, and that's it!</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💕</span>
+                        <span class="detail-label">Expectation:</span>
+                        <span class="detail-value">The best Valentine's ever</span>
+                    </div>
+                </div>
+
+                <p class="final-message">Screenshot this moment! 📸</p>
+                <p class="ps-message">P.S. - I promise to carry your bags 😊</p>
+            </div>
+        </div>
+        <canvas id="confettiCanvas"></canvas>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="honkSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2364/2364-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="celebrationSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
