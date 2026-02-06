@@ -24,10 +24,6 @@ exitBtn.addEventListener('mouseenter', () => {
     exitBtn.style.left = randomX + 'px';
     exitBtn.style.top = randomY + 'px';
 
-    // Shrink the button
-    const scale = Math.max(0.3, 1 - (exitAttempts * 0.15));
-    exitBtn.style.transform = `scale(${scale})`;
-
     // After 5 attempts, make it disappear
     if (exitAttempts >= 5) {
         setTimeout(() => {
@@ -88,59 +84,76 @@ nextBtn.addEventListener('click', () => {
     showScreen(4);
 });
 
-// Screen 4: The Big Question - Jeepney NO button
+// Screen 4: The Big Question - NO button with error popup
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const noMessage = document.getElementById('noMessage');
-const honkSound = document.getElementById('honkSound');
+const bigQuestion = document.querySelector('.big-question');
 let noAttempts = 0;
-
-const jeepneyMessages = [
-    "Nope, full na! 🚐",
-    "Sorry, walang baba dito! 😅",
-    "Next trip na lang! 💨",
-    "BEEP BEEP! 🚐💨"
-];
-
-noBtn.addEventListener('mouseenter', () => {
-    noAttempts++;
-
-    // Play honk sound
-    honkSound.currentTime = 0;
-    honkSound.play().catch(e => console.log('Audio play failed:', e));
-
-    noBtn.classList.add('moving');
-
-    // Move the jeepney button
-    const randomX = Math.random() * (window.innerWidth - 200);
-    const randomY = Math.random() * (window.innerHeight - 100);
-
-    noBtn.style.left = randomX + 'px';
-    noBtn.style.top = randomY + 'px';
-
-    // Show message
-    if (noAttempts <= jeepneyMessages.length) {
-        noMessage.textContent = jeepneyMessages[noAttempts - 1];
-    }
-
-    // Make it move faster each time
-    noBtn.style.transition = `all ${Math.max(0.2, 0.5 - (noAttempts * 0.1))}s ease`;
-
-    // After 3 attempts, drive it off screen
-    if (noAttempts >= 3) {
-        setTimeout(() => {
-            noBtn.style.left = '-300px';
-            noBtn.style.opacity = '0';
-            noMessage.textContent = "Looks like YES is your only option 😊";
-        }, 500);
-    }
-});
 
 noBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    // Trigger the same behavior as hover
-    noBtn.dispatchEvent(new Event('mouseenter'));
+    noAttempts++;
+
+    if (noAttempts === 1) {
+        // Show error popup with image
+        showErrorPopup();
+
+        // After showing popup, hide NO button, show message, change question, and make YES bigger
+        setTimeout(() => {
+            noBtn.style.display = 'none';
+            noMessage.textContent = "Looks like YES is your only option 😊";
+            bigQuestion.textContent = "Will you be my Valentine plsss? 💕";
+            yesBtn.style.transform = "scale(1.3)";
+            yesBtn.style.fontSize = "1.8rem";
+        }, 2000);
+    }
 });
+
+function showErrorPopup() {
+    // Create popup overlay
+    const popup = document.createElement('div');
+    popup.style.position = 'fixed';
+    popup.style.top = '0';
+    popup.style.left = '0';
+    popup.style.width = '100%';
+    popup.style.height = '100%';
+    popup.style.background = 'rgba(0, 0, 0, 0.8)';
+    popup.style.display = 'flex';
+    popup.style.flexDirection = 'column';
+    popup.style.alignItems = 'center';
+    popup.style.justifyContent = 'center';
+    popup.style.zIndex = '9999';
+    popup.style.animation = 'fadeIn 0.3s ease';
+
+    // Create error image
+    const errorImg = document.createElement('img');
+    errorImg.src = 'Assets/wrong.png';
+    errorImg.style.maxWidth = '300px';
+    errorImg.style.width = '80%';
+    errorImg.style.marginBottom = '20px';
+    errorImg.style.borderRadius = '20px';
+
+    // Create error message
+    const errorMsg = document.createElement('div');
+    errorMsg.textContent = 'nahhh. wrong';
+    errorMsg.style.color = 'white';
+    errorMsg.style.fontSize = '2rem';
+    errorMsg.style.fontWeight = 'bold';
+    errorMsg.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.8)';
+
+    popup.appendChild(errorImg);
+    popup.appendChild(errorMsg);
+    document.body.appendChild(popup);
+
+    // Remove popup after 1.5 seconds
+    setTimeout(() => {
+        popup.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            popup.remove();
+        }, 300);
+    }, 1500);
+}
 
 yesBtn.addEventListener('click', () => {
     showScreen(5);
@@ -187,6 +200,10 @@ function startCelebration() {
 
     // Hearts animation
     createFloatingHearts();
+
+    // Show booking confirmations
+    setTimeout(() => showBookingConfirmation('Assets/float1.jpeg', 'Hotel Booking Confirmed! 🏨'), 2000);
+    setTimeout(() => showBookingConfirmation('Assets/float2.jpeg', 'Bus Booking Confirmed! 🚌'), 4500);
 }
 
 function createFloatingHearts() {
@@ -221,6 +238,61 @@ function createFloatingHearts() {
     }
 }
 
+function showBookingConfirmation(imageSrc, title) {
+    // Create popup overlay
+    const popup = document.createElement('div');
+    popup.style.position = 'fixed';
+    popup.style.top = '0';
+    popup.style.left = '0';
+    popup.style.width = '100%';
+    popup.style.height = '100%';
+    popup.style.background = 'rgba(0, 0, 0, 0.85)';
+    popup.style.display = 'flex';
+    popup.style.flexDirection = 'column';
+    popup.style.alignItems = 'center';
+    popup.style.justifyContent = 'center';
+    popup.style.zIndex = '10000';
+    popup.style.animation = 'fadeIn 0.5s ease';
+    popup.style.cursor = 'pointer';
+
+    // Create title
+    const titleElement = document.createElement('div');
+    titleElement.textContent = title;
+    titleElement.style.color = 'white';
+    titleElement.style.fontSize = '2rem';
+    titleElement.style.fontWeight = 'bold';
+    titleElement.style.marginBottom = '20px';
+    titleElement.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.8)';
+
+    // Create booking image
+    const bookingImg = document.createElement('img');
+    bookingImg.src = imageSrc;
+    bookingImg.style.maxWidth = '90%';
+    bookingImg.style.maxHeight = '70vh';
+    bookingImg.style.borderRadius = '15px';
+    bookingImg.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.5)';
+
+    // Create close instruction
+    const closeText = document.createElement('div');
+    closeText.textContent = 'Click anywhere to close';
+    closeText.style.color = 'rgba(255, 255, 255, 0.7)';
+    closeText.style.fontSize = '1rem';
+    closeText.style.marginTop = '20px';
+
+    popup.appendChild(titleElement);
+    popup.appendChild(bookingImg);
+    popup.appendChild(closeText);
+    document.body.appendChild(popup);
+
+    // Click to close
+    popup.addEventListener('click', () => {
+        popup.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            popup.remove();
+        }, 300);
+    });
+}
+
 // Prevent right-click context menu for better mobile experience
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
@@ -233,11 +305,6 @@ window.addEventListener('resize', () => {
         exitBtn.style.left = '';
         exitBtn.style.top = '';
         exitBtn.classList.remove('running');
-    }
-    if (noBtn.classList.contains('moving')) {
-        noBtn.style.left = '';
-        noBtn.style.top = '';
-        noBtn.classList.remove('moving');
     }
 });
 
